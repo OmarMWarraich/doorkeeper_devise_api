@@ -20,7 +20,15 @@ RSpec.describe 'api/v1/books', type: :request do
 
     post('create book') do
       response(200, 'successful') do
-
+        consumes 'application/json'
+        parameter name: :book, in: :body, schema: {
+          type: :object,
+          properties: {
+            title: { type: :string },
+            body: { type: :text }
+          },
+          required: %w[title body]
+        }
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {

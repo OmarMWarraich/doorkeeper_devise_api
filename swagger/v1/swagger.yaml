@@ -12,9 +12,23 @@ paths:
           description: successful
     post:
       summary: create book
+      parameters: []
       responses:
         '200':
           description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                body:
+                  type: text
+              required:
+              - title
+              - body
   "/api/v1/books/{id}":
     parameters:
     - name: id
